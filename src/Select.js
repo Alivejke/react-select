@@ -53,6 +53,7 @@ const Select = React.createClass({
 		inputProps: React.PropTypes.object,         // custom attributes for the Input
 		inputRenderer: React.PropTypes.func,        // returns a custom input component
 		isLoading: React.PropTypes.bool,            // whether the Select is loading externally or not (such as options being loaded)
+		instanceId: React.PropTypes.string,         // set the components instanceId
 		joinValues: React.PropTypes.bool,           // joins multiple values into a single form field with the delimiter (legacy mode)
 		labelKey: React.PropTypes.string,           // path of the label value in option objects
 		matchPos: React.PropTypes.string,           // (any|start) match the start or entire string when filtering
@@ -152,7 +153,7 @@ const Select = React.createClass({
 	},
 
 	componentWillMount () {
-		this._instancePrefix = 'react-select-' + (++instanceId) + '-';
+		this._instancePrefix = 'react-select-' + (this.props.instanceId || ++instanceId) + '-';
 		const valueArray = this.getValueArray(this.props.value);
 
 		if (this.props.required) {

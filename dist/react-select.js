@@ -410,6 +410,7 @@ var Select = _react2['default'].createClass({
 		ignoreCase: _react2['default'].PropTypes.bool, // whether to perform case-insensitive filtering
 		inputProps: _react2['default'].PropTypes.object, // custom attributes for the Input
 		inputRenderer: _react2['default'].PropTypes.func, // returns a custom input component
+		instanceId: _react2['default'].PropTypes.string, // set the components instanceId
 		isLoading: _react2['default'].PropTypes.bool, // whether the Select is loading externally or not (such as options being loaded)
 		joinValues: _react2['default'].PropTypes.bool, // joins multiple values into a single form field with the delimiter (legacy mode)
 		labelKey: _react2['default'].PropTypes.string, // path of the label value in option objects
@@ -510,7 +511,7 @@ var Select = _react2['default'].createClass({
 	},
 
 	componentWillMount: function componentWillMount() {
-		this._instancePrefix = 'react-select-' + ++instanceId + '-';
+		this._instancePrefix = 'react-select-' + (this.props.instanceId || ++instanceId) + '-';
 		var valueArray = this.getValueArray(this.props.value);
 
 		if (this.props.required) {
